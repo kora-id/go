@@ -1,0 +1,29 @@
+image: koraid/go:latest
+
+variables:
+  MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  MYSQL_DATABASE: orm_test
+  TESTDB_HOST: mysql:3306
+  ORM_DRIVER: mysql
+  ORM_SOURCE: "root:@tcp(${TESTDB_HOST})/${MYSQL_DATABASE}?charset=utf8"
+
+before_script:
+  - go version
+  - mkdir $GOPATH/src/git.tech.kora.id
+  - mkdir $GOPATH/src/git.tech.kora.id/go
+  - WD="$GOPATH/src/git.tech.kora.id/go/orm"
+
+test:
+  services:
+    - mysql:latest
+  script:
+    - "cp -R $(pwd) $WD && cd $WD"
+    - glide install
+    - gotest
+  cache:
+    untracked: true
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - binaries/

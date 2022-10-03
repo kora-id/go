@@ -1,0 +1,12 @@
+image: koraid/go:latest
+
+before_script:
+    - go version
+    - mkdir $GOPATH/src/git.tech.kora.id
+    - mkdir $GOPATH/src/git.tech.kora.id/go
+    - WD="$GOPATH/src/git.tech.kora.id/go/env"
+
+test:
+    script:
+        - "cp -R $(pwd) $WD && cd $WD"
+        - gotest

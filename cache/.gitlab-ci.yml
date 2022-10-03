@@ -1,0 +1,26 @@
+image: koraid/go:latest
+
+services:
+  - redis:alpine
+
+before_script:
+  - go version
+  - mkdir $GOPATH/src/git.tech.kora.id
+  - mkdir $GOPATH/src/git.tech.kora.id/go
+  - WD="$GOPATH/src/git.tech.kora.id/go/cache"
+
+variables:
+  REDIS_HOST: redis:6379
+
+test:
+  cache:
+    untracked: true
+  script:
+    - "cp -R $(pwd) $WD && cd $WD"
+    - glide install
+    - gotest
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - binaries/

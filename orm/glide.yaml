@@ -1,0 +1,10 @@
+package: git.tech.kora.id/go/orm
+import:
+- package: git.tech.kora.id/go/utility
+testImport:
+- package: github.com/go-sql-driver/mysql
+  version: ^1.4.1
+- package: github.com/lib/pq
+  version: ^1.0.0
+- package: github.com/mattn/go-sqlite3
+  version: ^1.10.0

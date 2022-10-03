@@ -1,0 +1,21 @@
+package: git.tech.kora.id/go/utility
+import:
+- package: github.com/aws/aws-sdk-go
+  subpackages:
+  - aws
+  - aws/credentials
+  - aws/session
+  - service/s3
+- package: github.com/nfnt/resize
+- package: go.uber.org/zap
+  version: ^1.9.1
+  subpackages:
+  - zapcore
+- package: golang.org/x/crypto
+  subpackages:
+  - bcrypt
+testImport:
+- package: github.com/stretchr/testify
+  version: ^1.3.0
+  subpackages:
+  - assert

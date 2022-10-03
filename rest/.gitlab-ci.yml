@@ -1,0 +1,19 @@
+image: koraid/go:latest
+
+before_script:
+    - go version
+    - mkdir -p $GOPATH/src/git.tech.kora.id/go
+    - WD="$GOPATH/src/git.tech.kora.id/go/rest"
+
+test:
+    cache:
+        untracked: true
+    script:
+        - "cp -R $(pwd) $WD && cd $WD"
+        - glide install
+        - gotest
+
+cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+        - go/src/git.tech.kora.id/go/rest/vendor

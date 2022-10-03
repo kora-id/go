@@ -1,0 +1,9 @@
+package: git.tech.kora.id/go/mailer
+import:
+  - package: git.tech.kora.id/go/env
+  - package: git.tech.kora.id/go/utility
+  - package: gopkg.in/alexcesaro/quotedprintable.v3
+testImport:
+  - package: github.com/stretchr/testify
+    subpackages:
+      - assert
